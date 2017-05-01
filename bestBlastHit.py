@@ -26,11 +26,12 @@ class bestBlastHit:
                         top_hit_score = hsp.bits
                     if hit.title not in all_hits:
                         all_hits[hit.title] = dict()
-                    all_hits[hit.title][record.query] = {
-                        'hit_id': hit.title,
-                        'query_len': record.query_letters,
-                        'hsp': hsp,
-                    }
+                    if record.query not in all_hits[hit.title]:
+                        all_hits[hit.title][record.query] = {
+                            'hit_id': hit.title,
+                            'query_len': record.query_letters,
+                            'hsp': hsp,
+                        }
 
         return {
             'top_hit_id': top_hit_id,
